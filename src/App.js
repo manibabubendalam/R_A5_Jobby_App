@@ -51,15 +51,15 @@ const salaryRangesList = [
 
 // Replace your code here
 const App = () => (
-  <div className="app-container">
+  //<div className="app-container">
     <Switch>
-      <ProtectedRoute path="/login" component={Login} />
+      <Route path="/login" component={Login} />
       <ProtectedRoute path="/" exact component={Home} />
       <ProtectedRoute path="/jobs" exact component={Jobs} />
       <ProtectedRoute path="/jobs/1" component={JobItemDetails} />
       <ProtectedRoute component={NotFound}/>
     </Switch>
-  </div>
+  //</div>
 );
 
 export default App;

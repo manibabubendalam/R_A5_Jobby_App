@@ -1,13 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-
+import { Redirect, useHistory } from "react-router-dom";
 import Cookies from 'js-cookie'
 
+import { Home } from "../Home/Home";
 
 import "./Login.css";
-
-
 
 export const Login = () => {
 
@@ -15,6 +13,13 @@ export const Login = () => {
   const [password, setPassword] = useState("")
   const [loginMessage, setLoginMessage] = useState("")
   const history = useHistory();
+
+  const user = Cookies.get("user");
+  if (!!user) {
+    return (
+        <Redirect to="/" />
+    )
+  }
 
   const usernameHandler = (event) => {
     setUsername(event.target.value)
@@ -30,7 +35,7 @@ export const Login = () => {
     console.log(password)
     if (username === password){
       console.log("Login Success");
-      //Cookies.set('username', username)
+      Cookies.set('user', username)
       history.replace("/")
     }
     else{

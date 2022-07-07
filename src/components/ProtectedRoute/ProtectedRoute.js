@@ -1,21 +1,28 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Redirect, Route, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
+
 import { Header } from "../Header/Header";
+import { Login } from "../Login/Login";
+
 
 export const ProtectedRoute = (props) => {
-  //const username = Cookies.get("username");
+
+  //const history = useHistory();
+  const user = Cookies.get("user");
   //return <Route {...props} />
-//   if (true) {
+  console.log("1")
+  if (!!user) {
     return (
       <React.Fragment>
-        {//<Header />
-        }
+        <Header />
         <Route {...props} />
       </React.Fragment>
     )
-//   } else {
-//     return <Route path="/login" component={Login} />;
-//   }
+  } else {
+    console.log("3")
+    return (<Redirect to="/login" />)
+    //history.replace("/login")
+  }
 };
