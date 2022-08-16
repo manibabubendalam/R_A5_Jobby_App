@@ -3,10 +3,10 @@ import { Switch, Route } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { Login } from "./components/Login/Login";
 import { Home } from "./components/Home/Home";
-import {Jobs} from "./components/Jobs/Jobs";
-import {JobItemDetails} from "./components/JobItemDetails/JobItemDetails"
-import {ProtectedRoute} from './components/ProtectedRoute/ProtectedRoute'
-import {NotFound} from './components/NotFound/NotFound'
+import { Jobs } from "./components/Jobs/Jobs";
+import { JobItemDetails } from "./components/JobItemDetails/JobItemDetails";
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
+import { NotFound } from "./components/NotFound/NotFound";
 
 import "./App.css";
 
@@ -52,13 +52,19 @@ const salaryRangesList = [
 // Replace your code here
 const App = () => (
   //<div className="app-container">
-    <Switch>
-      <Route path="/login" component={Login} />
-      <ProtectedRoute path="/" exact component={Home} />
-      <ProtectedRoute path="/jobs" exact component={Jobs} />
-      <ProtectedRoute path="/jobs/1" component={JobItemDetails} />
-      <ProtectedRoute component={NotFound}/>
-    </Switch>
+  <Switch>
+    <Route path="/login" component={Login} />
+    <ProtectedRoute path="/" exact component={Home} />
+    <ProtectedRoute
+      path="/jobs"
+      exact
+      component={Jobs}
+      employmentTypesList={employmentTypesList}
+      salaryRangesList={salaryRangesList}
+    />
+    <ProtectedRoute path="/jobs/1" component={JobItemDetails} />
+    <ProtectedRoute component={NotFound} />
+  </Switch>
   //</div>
 );
 

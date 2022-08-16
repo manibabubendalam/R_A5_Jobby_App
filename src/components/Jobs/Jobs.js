@@ -1,13 +1,37 @@
 import React from "react";
 
 import { Header } from "../Header/Header";
+import { BsSearch } from "react-icons/bs";
 
 import "./Jobs.css";
 
-export const Jobs = () => {
+export const Jobs = (props) => {
+  // const { employmentTypesList, salaryRangesList } = props;
+  const employmentTypesList = props.employmentTypesList;
+  console.log(employmentTypesList, "jobs 10");
+  console.log(props, "jobs 11");
   return (
     <React.Fragment>
-      <h1>You are in Jobs Component</h1>
+      <div className="search-container">
+        <input className="search-bar" placeholder="Search" />
+        {/* <img
+          className="search-icon"
+          src="https://image.shutterstock.com/image-vector/search-icon-sign-design-260nw-730234714.jpg"
+        /> */}
+        <button>
+          <BsSearch></BsSearch>
+        </button>
+      </div>
+      <div className="userprofile-container">
+        <img
+          className="user-image"
+          src="data:image/png;base64,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"
+        />
+        <div className="userdetails-container">
+          <h3 className="username">Manibabu Bendalam</h3>
+          <p className="user-designation">Software Engineer</p>
+        </div>
+      </div>
     </React.Fragment>
   );
 };
